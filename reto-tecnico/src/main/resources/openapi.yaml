@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+paths:
+  /convert:
+    post:
+      summary: Convertir moneda
+      description: Convierte un monto de una moneda a otra utilizando el tipo de cambio actual.
+      parameters:
+        - in: body
+          name: requestBody
+          description: Datos para la conversión de moneda
+          required: true
+          $ref:
+          schema:
+            type: object
+            properties:
+              amount:
+                type: number
+              currencyFrom:
+                type: string
+              currencyTo:
+                type: string
+            example:
+              amount: 100
+              currencyFrom: "USD"
+              currencyTo: "EUR"
+      responses:
+        '200':
+          description: Éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  convertedAmount:
+                    type: number
+                  currencyFrom:
+                    type: string
+                  currencyTo:
+                    type: string
+                  exchangeRate:
+                    type: number
+              example:
+                amount: 100
+                convertedAmount: 84.5
+                currencyFrom: "USD"
+                currencyTo: "EUR"
+                exchangeRate: 0.845
+        '400':
+          description: Solicitud incorrecta
+        '401':
+          description: No autorizado
+        '500':
+          description: Error del servidor
+  /update-exchange-rate:
+    post:
+      summary: Actualizar tipo de cambio
+      description: Actualiza el valor del tipo de cambio para una moneda específica.
+      parameters:
+        - in: body
+          name: requestBody
+          description: datos para le tipo de cambio.
+          required: true
+          $ref:
+          schema:
+            type: object
+            properties:
+              currencyFrom:
+                type: string
+              currencyTo:
+                type: string
+              newRate:
+                type: number
+      responses:
+          '200':
+            description: Éxito
+          '400':
+            description: Solicitud incorrecta
+          '401':
+            description: No autorizado
+          '500':
+            description: Error del servidor

@@ -1,7 +1,6 @@
 package com.retotecnico.reto.application.serviceimpl;
 
 import com.retotecnico.reto.domain.dtos.ExchangeRateDto;
-import com.retotecnico.reto.domain.entities.ExchangeRateEntity;
 import com.retotecnico.reto.domain.mapper.Mapper;
 import com.retotecnico.reto.domain.models.ConversionRequest;
 import com.retotecnico.reto.domain.models.ConversionResult;
