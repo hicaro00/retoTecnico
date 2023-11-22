@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 public interface CurrencyExchangeService {
 
   Mono<ConversionResult> convertCurrency(ConversionRequest conversionRequest);
-  Mono<Void> updateExchangeRate(UpdateExchangeRateRequest updateExchangeRateRequest);
+  Mono<String> updateExchangeRate(UpdateExchangeRateRequest updateExchangeRateRequest);
   Flux<ExchangeRateDto> getall();
   public Mono<ExchangeRateDto> guardar(Mono<ExchangeRateDto> exchangeRate);
 }

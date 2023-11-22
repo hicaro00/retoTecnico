@@ -4,15 +4,16 @@ import com.retotecnico.reto.security.models.reqrespbodies.ReqLogin;
 import com.retotecnico.reto.security.models.reqrespmodel.ReqRespModel;
 import com.retotecnico.reto.security.service.JWTService;
 import java.util.Collection;
+import java.util.Collections;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
@@ -49,7 +50,7 @@ public class AuthController {
         new UserDetails() {
           @Override
           public Collection<? extends GrantedAuthority> getAuthorities() {
-            return null;
+            return Collections.emptyList();
           }
 
           @Override

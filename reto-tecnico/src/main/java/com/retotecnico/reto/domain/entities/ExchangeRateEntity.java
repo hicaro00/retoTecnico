@@ -21,3 +21,4 @@ public class ExchangeRateEntity {
 
   private BigDecimal rate;
 }
+

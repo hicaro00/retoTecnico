@@ -36,18 +36,19 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
 
   @Override
 
-  public Mono<Void> updateExchangeRate(UpdateExchangeRateRequest updateExchangeRateRequest) {
+  public Mono<String> updateExchangeRate(UpdateExchangeRateRequest updateExchangeRateRequest) {
+
+
     String currencyFrom = updateExchangeRateRequest.getCurrencyFrom();
     String currencyTo = updateExchangeRateRequest.getCurrencyTo();
-
     return exchangeRateRepository.findByCurrencyFromAndCurrencyTo(currencyFrom, currencyTo)
-        .flatMap(existingExchangeRate -> {
-          existingExchangeRate.setRate(updateExchangeRateRequest.getNewRate());//para actualizar
-          return exchangeRateRepository.save(Mapper.dtoToEntity(existingExchangeRate));
-        })
-        .then(Mono.just("Tipo de cambio actualizado con éxito")).then();
+          .flatMap(existingExchangeRate -> {
+            existingExchangeRate.setRate(updateExchangeRateRequest.getNewRate());
+            return exchangeRateRepository.save(Mapper.dtoToEntity(existingExchangeRate));
+          })
+          .then(Mono.just("Tipo de cambio actualizado con éxito"));
+    }
 
-  }
 
   @Override
   public Flux<ExchangeRateDto> getall() {

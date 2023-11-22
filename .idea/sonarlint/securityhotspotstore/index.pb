@@ -45,3 +45,7 @@ ereto-tecnico/src/main/java/com/retotecnico/reto/infrastructure/repository/Excha
 lreto-tecnico/src/test/java/com/retotecnico/reto/application/serviceimpl/CurrencyExchangeServiceImplTest.java,0\2\02232517c907e242890721d2133a3994e08657f8
 G
 reto-tecnico/Dockerfile,e\2\e2a195e8fef4f74cb4d2534d389a501038f068d6
+O
+reto-tecnico/Docker-compose.yml,6\8\6878b169798ee61e1dd28fb53b446225bd54551b
+ƒ
+Sreto-tecnico/src/main/java/com/retotecnico/reto/domain/models/ConversionResult.java,7\4\74a7e7c112b8a0f394ea83ecb38f0b5abb6609b3

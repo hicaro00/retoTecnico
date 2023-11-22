@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,18 +44,17 @@ public class CurrencyExchangeController {
             }));
 
   }
+
   @PostMapping("/update-rate")
-  Mono<ResponseEntity<String>> updateExchangeRate(@RequestBody
-                                                  UpdateExchangeRateRequest updateExchangeRateRequest){
-    return Mono.fromCallable(()-> {
-      currencyExchangeService.updateExchangeRate(updateExchangeRateRequest);
-      return ResponseEntity.ok("Tipo de cambio actualizado con exito");
-
-    }).onErrorResume(e -> Mono.just(ResponseEntity.status(500).body("error al actualizar en la BD")));
-
+  public Mono<ResponseEntity<String>> updateExchangeRate(@RequestBody Mono<UpdateExchangeRateRequest> updateExchangeRateRequest) {
+    return updateExchangeRateRequest.flatMap(request ->
+        currencyExchangeService.updateExchangeRate(request)
+            .map(ResponseEntity::ok)
+            .onErrorResume(e -> Mono.just(ResponseEntity.status(500).body("Error al actualizar en la BD")))
+    );
   }
 
-  @GetMapping
+  @GetMapping("/traer")
   @ResponseBody
   Flux<ExchangeRateDto> traer (){
     Flux<ExchangeRateDto> exchage = currencyExchangeService.getall();
