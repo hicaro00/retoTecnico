@@ -35,7 +35,9 @@ public class SecurityConfig {
     jwtFilter.setServerAuthenticationConverter(jwtAuthConverter);
     return http
         .authorizeExchange(auth -> {
-          auth.pathMatchers("/login").permitAll();
+          auth.pathMatchers("/exchange/convert").permitAll();
+          auth.pathMatchers("/exchange/traer").permitAll();
+          auth.pathMatchers("/auth/login").permitAll();
           auth.anyExchange().authenticated();
         })
         .addFilterAt(jwtFilter, SecurityWebFiltersOrder.AUTHENTICATION)

@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
+@RequestMapping("/auth")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class AuthController {
 
   final ReactiveUserDetailsService users;
@@ -34,15 +37,7 @@ public class AuthController {
   }
 
 
-  @GetMapping("/auth")
-  public Mono<ResponseEntity<ReqRespModel<String>>> auth() {
 
-    return Mono.just(
-        ResponseEntity.ok(
-            new ReqRespModel<>("Hola bienvenido ", "")
-        )
-    );
-  }
 
   @PostMapping("/login")
   public Mono<ResponseEntity<ReqRespModel<String>>> login(@RequestBody ReqLogin user) {
@@ -87,15 +82,14 @@ public class AuthController {
     return foundUser.map(
         u -> {
           if (u.getUsername() == null) {
-            return ResponseEntity.status(404).body(new ReqRespModel<>("",
-                "usuario no encontrado por favor registrese antes de logearse"));
+            return ResponseEntity.status(404).body(new ReqRespModel<>(""));
           }
           if (passwordEncoder.matches(user.getPassword(), u.getPassword())) {
             return ResponseEntity.ok(
-                new ReqRespModel<>(jwtService.generate(u.getUsername()), "exito")
+                new ReqRespModel<>(jwtService.generate(u.getUsername()))
             );
           }
-          return ResponseEntity.badRequest().body(new ReqRespModel<>("", "credenciales invalidas"));
+          return ResponseEntity.badRequest().body(new ReqRespModel<>(""));
         }
     );
 

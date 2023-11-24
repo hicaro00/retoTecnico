@@ -3,16 +3,14 @@ package com.retotecnico.reto.security.models.reqrespmodel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+
 public class ReqRespModel<T> implements IReqRespModel<T>{
-  private T data;
-  private String message;
-  @Override
-  public T getData() {
-    return this.data;
-  }
+  private T token;
 
   @Override
-  public String getMessage() {
-    return this.message;
+  public T getToken() {
+    return this.token;
   }
+
+
 }

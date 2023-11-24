@@ -49,3 +49,7 @@ O
 reto-tecnico/Docker-compose.yml,6\8\6878b169798ee61e1dd28fb53b446225bd54551b
 ƒ
 Sreto-tecnico/src/main/java/com/retotecnico/reto/domain/models/ConversionResult.java,7\4\74a7e7c112b8a0f394ea83ecb38f0b5abb6609b3
+¤
+treto-tecnico/src/main/java/com/retotecnico/reto/application/serviceimpl/ExceptionHandler/GlobalExceptionHandler.java,a\c\ac43ec3cc148764882cb495bf3d65daa606ed8ca
+Œ
+\reto-tecnico/src/main/java/com/retotecnico/reto/domain/models/UpdateExchangeRateRequest.java,1\d\1d68611deee7cbf99139ac6149516a8de5cde45f

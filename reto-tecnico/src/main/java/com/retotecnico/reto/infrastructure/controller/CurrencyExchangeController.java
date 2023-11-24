@@ -24,6 +24,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @Slf4j
 @RequestMapping("/exchange")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class CurrencyExchangeController {
 
   @Autowired
@@ -32,6 +33,7 @@ public class CurrencyExchangeController {
 
 
   @PostMapping("/convert")
+
   public Mono<ResponseEntity<ConversionResult>> convertCurrency(
       @RequestBody Mono<ConversionRequest> conversionRequest) {
     return conversionRequest.flatMap(request ->
@@ -57,8 +59,8 @@ public class CurrencyExchangeController {
   @GetMapping("/traer")
   @ResponseBody
   Flux<ExchangeRateDto> traer (){
-    Flux<ExchangeRateDto> exchage = currencyExchangeService.getall();
-   return ResponseEntity.status(HttpStatus.OK).body(exchage).getBody();
+
+   return currencyExchangeService.getall();
 
   }
  @PostMapping("post")
